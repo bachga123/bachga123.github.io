@@ -48,17 +48,17 @@ namespace LoginWebsite.Controllers
         }
         public ActionResult LogOut()
         {
-            int userId = (int)Session["userId"];
             Session.Abandon();
             return RedirectToAction("Index", "Login");
         }
         public ActionResult Register()
         {
             return View();
+
         }
         [HttpPost]
         public ActionResult Register(User userModel)
-        { 
+        {
             using (LoginDatabaseEntities db = new LoginDatabaseEntities())
             {
                 if (ModelState.IsValid)
@@ -92,16 +92,19 @@ namespace LoginWebsite.Controllers
                         db.Configuration.ValidateOnSaveEnabled = false;
                         db.Users.Add(user);
                         db.SaveChanges();
-                        return RedirectToAction("Index");
-
+                        return RedirectToAction("Index", "Login");
                     }
                     else
                     {
-                        userModel.RegisterErrorMessage = "Username already exits";
-                        return View("Register",userModel);
+                        userModel.RegisterErrorMessage = "Username's exists";
+                        return RedirectToAction("Register",userModel);
                     }
                 }
-                return View();
+                else
+                {
+                    userModel.RegisterErrorMessage = "Can not register";
+                    return RedirectToAction("Register", userModel);
+                }
             }
         }
         public static string GetMD5(string input)

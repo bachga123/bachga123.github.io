@@ -23,9 +23,8 @@ namespace LoginWebsite.Models
         public string UserName { get; set; }
         [DisplayName("Password")]
         [Required(ErrorMessage = " This field is empty")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        [DisplayName("Image")]
-        [Required(ErrorMessage = " This field is empty")]
         public byte[] Imagine { get; set; }
 
         public string RemoveErrorMessage;
