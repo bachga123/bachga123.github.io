@@ -1,0 +1,71 @@
+﻿@model LoginWebsite.Models.Class
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditClass</title>
+    <style>
+        #edit-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px
+        }
+    </style>
+</head>
+<body>
+    <div id="edit-div">
+        @using (Html.BeginForm("EditClass", "Class", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline">Edit Class</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.ClassId) </td>
+                    <td>@Html.DisplayFor(model => model.ClassId) </td>
+                    @Html.Hidden("ClassId", (object)ViewBag.ClassId)
+
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.ClassName) </td>
+                    <td>@Html.EditorFor(model => model.ClassName) </td>
+                    <td>@Html.ValidationMessageFor(model => model.ClassName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.NumOfStu) </td>
+                    <td>@Html.EditorFor(model => model.NumOfStu) </td>
+                    <td>@Html.ValidationMessageFor(model => model.NumOfStu)</td>
+
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.NameOfTeacher) </td>
+                    <td>@Html.EditorFor(model => model.NameOfTeacher) </td>
+                    <td>@Html.ValidationMessageFor(model => model.NameOfTeacher)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">@Html.DisplayFor(model => model.EditClassErrorMessage)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="name" value="Edit" class="btn btn-primary" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@model LoginWebsite.Models.User
+@{
+        Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        #edit-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px
+        }
+    </style>
+    <title>ChangeUserInform</title>
+</head>
+<body>
+    <div class="edit-div">
+        @using (Html.BeginForm("EditUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table>
+            <tr>
+                <td style="text-decoration:underline">User Infor</td>
+            </tr>
+            <tr>
+                <td>@Html.Image(Model.Imagine)</td>
+            </tr>
+            <tr>
+                <td style="text-decoration:underline "> Change user information</td>
+            </tr>
+            <tr>
+                <td>
+                @Html.LabelFor(Model => Model.UserName)
+                @Html.EditorFor(Model => Model.UserName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                @Html.LabelFor(Model => Model.Password)
+                @Html.EditorFor(Model => Model.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.Label("Photo", new { @class = "control-label col-md-2" })</td>
+                @Html.Hidden("UserID", (object)ViewBag.UserID)
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <input type="file" id="Image" name="image" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="name" value="Edit" class="btn btn-default" />
+                </td>
+            </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

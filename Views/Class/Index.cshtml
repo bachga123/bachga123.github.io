@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LoginWebsite.Models.Class>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<style>
+        #table-div {
+            
+            padding: .75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }   
+    </style>*@
+</head>
+<body>
+    <div class="table-div">
+        <table class="table table-hover">
+            <thread>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.ClassId)</th>
+                    <th>@Html.DisplayNameFor(m => m.ClassName)</th>
+                    <th> @Html.DisplayNameFor(m => m.NumOfStu)</th>
+                    <th>@Html.DisplayNameFor(m => m.NameOfTeacher)</th>
+                </tr>
+            </thread>
+            <tbody>
+                @foreach (var item in ViewBag.Classes)
+                {
+                    <tr>
+                        <td>@item.ClassId</td>
+                        <td>@item.ClassName</td>
+                        <td>@item.NumOfStu</td>
+                        <td>@item.NameOfTeacher</td>
+                        <td>
+                            <a href="@Url.Action("EditClass","Class",new { ClassId = item.ClassId })"> Edit Class</a> |
+                            @Html.ActionLink("Remove","RemoveClass", new { ClassId = item.ClassId }, new { onclick = "return confirm('Are you sure?');" } )
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a href="@Url.Action("AddClass","Class")" class="btn btn-primary btn-lg active" role="button" aria-pressed="true"> Create Class</a>
+
+    </div>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

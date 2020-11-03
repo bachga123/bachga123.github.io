@@ -1,0 +1,98 @@
+﻿@model LoginWebsite.Models.Class
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Class</title>
+    <style>
+        #add-class-div {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px
+        }
+    </style>
+</head>
+<body>
+    <div class="add-class-div">
+        <div id="add-class-div">
+        @using (Html.BeginForm("AddClass", "Class", FormMethod.Post))
+        {
+        <table>
+            <tr>
+                <td></td>
+                <td style="text-decoration:underline">Add Class</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ClassId)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.ClassId)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(m => m.ClassId)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.ClassName)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.ClassName)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(m => m.ClassName)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.NumOfStu)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.NumOfStu)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.ValidationMessageFor(m => m.NumOfStu)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(m => m.NameOfTeacher)
+                </td>
+                <td>
+                    @Html.EditorFor(m => m.NameOfTeacher)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(m => m.NameOfTeacher)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="field-validation-error">@Html.DisplayFor(model => model.AddClassErrorMessage)</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="name" value="Add" class="btn btn-default" />
+                    <input type="reset" name="name" value="Clear" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+        }
+            </div>
+    </div>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
